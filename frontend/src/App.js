@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react';
 import UserList from "./components/users";
 import users from "./components/users";
+import axios from "axios";
 
 class App extends React.Component {
     constructor(props) {
@@ -13,25 +14,35 @@ class App extends React.Component {
     }
 
     componentDidMount() { // componentDidMount отрабатывает при монтировании компонентов
-        const users = [
-            {
-                'username':'sobaka',
-                'first_name':'Моня',
-                'last_name':'Горшкова',
-                'email':'monya@mail.ru',
-            },
-            {
-                'username':'koshka',
-                'first_name':'Ириска',
-                'last_name':'Горшкова',
-                'email':'iriska@mail.ru',
-            },
-        ]
-        this.setState(
-            {
-                'users': users
+        axios.get('http://127.0.0.1:8000/api/users/').then(
+            response => {
+                const users = response.data // тут лежит список данных
+                this.setState(
+                    {
+                        'users': users
+                    }
+                )
             }
-        )
+        ).catch(error => console.log(error)) // перенаправляем ошибку в консоль
+        // const users = [
+        //     {
+        //         'username':'sobaka',
+        //         'first_name':'Моня',
+        //         'last_name':'Горшкова',
+        //         'email':'monya@mail.ru',
+        //     },
+        //     {
+        //         'username':'koshka',
+        //         'first_name':'Ириска',
+        //         'last_name':'Горшкова',
+        //         'email':'iriska@mail.ru',
+        //     },
+        // ]
+        // this.setState(
+        //     {
+        //         'users': users
+        //     }
+        // )
     }
 
     render() {
