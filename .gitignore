@@ -1,5 +1,4 @@
-/.idea
-db.sqlite3
 .idea
+db.sqlite3
 /node_modules
 
