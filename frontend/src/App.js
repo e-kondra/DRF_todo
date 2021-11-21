@@ -1,11 +1,13 @@
 import logo from './logo.svg';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
-import React from 'react';
+
 import UserList from "./components/users";
-import users from "./components/users";
 import axios from "axios";
 import Menu from "./components/Menu";
+import Footer from "./components/Footer";
+import {Button} from "react-bootstrap";
 
 class App extends React.Component {
     constructor(props) {
@@ -49,17 +51,11 @@ class App extends React.Component {
 
     render() {
         return (
-            <body >
-            <div className="d-flex flex-column min-vh-100">
-                <div className="wrapper flex-grow-1">
-                    <div className="menu-main">
-                        <Menu/>
-                    </div>
-                    <UserList users={this.state.users}/>
-                </div>
-                <footer className="footer"> FOOTER</footer>
+            <div>
+                <Menu/>
+                <UserList users={this.state.users}/>
+                <Footer/>
             </div>
-            </body>
         );
     };
 
