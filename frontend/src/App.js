@@ -28,25 +28,7 @@ class App extends React.Component {
                 )
             }
         ).catch(error => console.log(error)) // перенаправляем ошибку в консоль
-        // const users = [
-        //     {
-        //         'username':'sobaka',
-        //         'first_name':'Моня',
-        //         'last_name':'Горшкова',
-        //         'email':'monya@mail.ru',
-        //     },
-        //     {
-        //         'username':'koshka',
-        //         'first_name':'Ириска',
-        //         'last_name':'Горшкова',
-        //         'email':'iriska@mail.ru',
-        //     },
-        // ]
-        // this.setState(
-        //     {
-        //         'users': users
-        //     }
-        // )
+
     }
 
     render() {
