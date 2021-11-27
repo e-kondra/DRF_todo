@@ -8,3 +8,13 @@ class ProjectFilter(filter.FilterSet):
         model = Project
         fields = ['name']
 
+
+class TodoFilter(filter.FilterSet):
+
+    class Meta:
+        model = Todo
+        fields = {'project': ['exact'],
+                  # 'date_create': ['day__gte', 'day__lt'],
+                  }
+
+
