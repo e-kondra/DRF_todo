@@ -1,29 +1,58 @@
 import logo from './logo.svg';
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import {HashRouter,BrowserRouter, Route} from "react-router-dom";
+import axios from "axios";
 
 import UserList from "./components/users";
-import axios from "axios";
 import Menu from "./components/Menu";
 import Footer from "./components/Footer";
-import {Button} from "react-bootstrap";
+import ProjectList from "./components/Projects";
+import TodoList from "./components/TodoLs";
+
+
+
 
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            'users': []
+            'users': [],
+            'projects': [],
+            'todos': [],
         }
     }
 
     componentDidMount() { // componentDidMount отрабатывает при монтировании компонентов
-        axios.get('http://127.0.0.1:8000/api/users/').then(
+        axios.get('http://127.0.0.1:8000/api/users').then(
             response => {
-                const users = response.data // тут лежит список данных
+                const users = response.data.results // тут лежит список данных
                 this.setState(
                     {
                         'users': users
+                    }
+                )
+            }
+        ).catch(error => console.log(error)) // перенаправляем ошибку в консоль
+
+        axios.get('http://127.0.0.1:8000/api/projects').then(
+            response => {
+                const projects = response.data.results // тут лежит список данных
+                this.setState(
+                    {
+                        'projects': projects
+                    }
+                )
+            }
+        ).catch(error => console.log(error)) // перенаправляем ошибку в консоль
+
+        axios.get('http://127.0.0.1:8000/api/todo').then(
+            response => {
+                const todos = response.data.results // тут лежит список данных
+                this.setState(
+                    {
+                        'todos': todos
                     }
                 )
             }
@@ -34,8 +63,12 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Menu/>
-                <UserList users={this.state.users}/>
+                <HashRouter>
+                    <Menu/>
+                    <Route exact path='/' component={() => <UserList users={this.state.users}/>} />
+                    <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>} />
+                    <Route exact path='/todo' component={() => <TodoList todos={this.state.todos}/>} />
+                </HashRouter>
                 <Footer/>
             </div>
         );

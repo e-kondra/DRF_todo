@@ -141,7 +141,7 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.render.CamelCaseJSONRenderer',  # settings for Camel_Case
         'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',  # settings for Camel_Case
         'rest_framework.renderers.JSONRenderer',
-        # 'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ],
     'DEFAULT_PARSER_CLASSES': [   # settings for Camel_Case:
         # If you use MultiPartFormParser or FormParser, we also have a camel case version

@@ -1,5 +1,6 @@
 import React from "react";
-import {Navbar, Nav, Link} from "react-bootstrap";
+import {Navbar, Nav} from "react-bootstrap";
+import {HashRouter, Link} from "react-router-dom";
 
 
 const Menu = () => {
@@ -9,9 +10,9 @@ const Menu = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link>Users</Nav.Link>
-                        <Nav.Link>Projects</Nav.Link>
-                        <Nav.Link>TODO_lists</Nav.Link>
+                        <Link to='/' className="link-light nav-link">Users</Link>
+                        <Link to='/projects' className="link-light nav-link">Projects </Link>
+                        <Link to='/todo' className="link-light nav-link">TODO_list </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -21,6 +22,6 @@ const Menu = () => {
 export default Menu;
 
 
-                        // <Nav.Link><Link to="/users">Users</Link></Nav.Link>
-                        // <Nav.Link><Link to="/projects">Projects</Link></Nav.Link>
-                        // <Nav.Link><Link to="/todo_lists">TODO_lists</Link></Nav.Link>
+// <Nav.Link><Link to="/users">Users</Link></Nav.Link>
+// <Nav.Link><Link to="/projects">Projects</Link></Nav.Link>
+// <Nav.Link><Link to="/todo_lists">TODO_lists</Link></Nav.Link>
