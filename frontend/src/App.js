@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import {HashRouter,BrowserRouter, Route} from "react-router-dom";
+import {HashRouter, BrowserRouter, Route, Switch} from "react-router-dom";
 import axios from "axios";
 
 import UserList from "./components/users";
@@ -10,8 +10,7 @@ import Menu from "./components/Menu";
 import Footer from "./components/Footer";
 import ProjectList from "./components/Projects";
 import TodoList from "./components/TodoLs";
-
-
+import NotFound404 from "./components/NotFound404";
 
 
 class App extends React.Component {
@@ -63,13 +62,17 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <HashRouter>
+                <BrowserRouter>
                     <Menu/>
-                    <Route exact path='/' component={() => <UserList users={this.state.users}/>} />
-                    <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>} />
-                    <Route exact path='/todo' component={() => <TodoList todos={this.state.todos}/>} />
-                </HashRouter>
-                <Footer/>
+                    <Switch>
+                        <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
+                        <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>
+                        <Route exact path='/todo' component={() => <TodoList todos={this.state.todos}/>}/>
+                        <Route component={NotFound404}/>
+                    </Switch>
+                    <Footer/>
+                </BrowserRouter>
+
             </div>
         );
     };
