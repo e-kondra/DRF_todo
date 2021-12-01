@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import ProjectList from "./components/Projects";
 import TodoList from "./components/TodoLs";
 import NotFound404 from "./components/NotFound404";
+import ProjectsTodoList from "./components/ProjectsTodo";
 
 
 class App extends React.Component {
@@ -62,16 +63,19 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <BrowserRouter>
+                <HashRouter>
                     <Menu/>
                     <Switch>
                         <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
                         <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>
                         <Route exact path='/todo' component={() => <TodoList todos={this.state.todos}/>}/>
+                        <Route path='/project/:id'>
+                            <ProjectsTodoList todos={this.state.todos} projects={this.state.projects}/>
+                        </Route>
                         <Route component={NotFound404}/>
                     </Switch>
                     <Footer/>
-                </BrowserRouter>
+                </HashRouter>
 
             </div>
         );

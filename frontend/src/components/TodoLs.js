@@ -15,6 +15,7 @@ const TodoItem = ({todo}) => {
 }
 
 const TodoList = ({todos}) => {
+    console.log(todos)
     return (
 
         <table className="my_table">
