@@ -135,7 +135,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
-
+# from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'djangorestframework_camel_case.render.CamelCaseJSONRenderer',  # settings for Camel_Case
@@ -150,6 +150,10 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
         # Any other parsers
     ],
+    'DEFAULT_PERMISSION_CLASSES': [
+            'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ],
+
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
