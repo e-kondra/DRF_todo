@@ -12,6 +12,7 @@ import ProjectList from "./components/Projects";
 import TodoList from "./components/TodoLs";
 import NotFound404 from "./components/NotFound404";
 import ProjectsTodoList from "./components/ProjectsTodo";
+import LoginForm from "./components/LoginForm";
 
 
 class App extends React.Component {
@@ -69,6 +70,7 @@ class App extends React.Component {
                         <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
                         <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>
                         <Route exact path='/todo' component={() => <TodoList todos={this.state.todos}/>}/>
+                        <Route exact path='/login' component={() => <LoginForm/>}/>
                         <Route path='/project/:id'>
                             <ProjectsTodoList todos={this.state.todos} projects={this.state.projects}/>
                         </Route>

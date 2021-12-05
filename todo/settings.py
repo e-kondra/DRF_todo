@@ -152,7 +152,7 @@ REST_FRAMEWORK = {
         # Any other parsers
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-            'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+            'rest_framework.permissions.IsAuthenticated',
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [

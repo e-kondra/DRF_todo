@@ -13,6 +13,7 @@ const Menu = () => {
                         <Link to='/' className="link-light nav-link">Users</Link>
                         <Link to='/projects' className="link-light nav-link">Projects </Link>
                         <Link to='/todo' className="link-light nav-link">TODO_list </Link>
+                        <Link to='/login' className="link-light nav-link">Login </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
