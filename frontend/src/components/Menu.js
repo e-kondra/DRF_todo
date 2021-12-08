@@ -1,19 +1,20 @@
 import React from "react";
 import {Navbar, Nav} from "react-bootstrap";
-import {HashRouter, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
-const Menu = () => {
+const Menu = ({username}) => {
+    console.log(username)
     return (
         <container>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Link to='/' className="link-light nav-link">Users</Link>
-                        <Link to='/projects' className="link-light nav-link">Projects </Link>
-                        <Link to='/todo' className="link-light nav-link">TODO_list </Link>
-                        <Link to='/login' className="link-light nav-link">Login </Link>
+                        <Link to='/' className="link-light nav-link"> Users </Link>
+                        <Link to='/projects' className="link-light nav-link"> Projects </Link>
+                        <Link to='/todo' className="link-light nav-link"> TODO_list </Link>
+                        <link className="link-light nav-link">{username}</link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

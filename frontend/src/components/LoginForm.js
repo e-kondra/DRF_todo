@@ -17,9 +17,9 @@ class LoginForm extends React.Component {
         )
     }
 
-    handleSubmit(event){
+    handleSubmit(event){ //передает данные из формы в функцию, кот.отправляет запрос на backend
         // console.log(this.state.login + ' ' + this.state.password)
-        this.props.get_token(this.state.login, this.state.password)
+        this.props.getToken(this.state.login, this.state.password)
         event.preventDefault()
     }
 
