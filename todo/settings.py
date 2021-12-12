@@ -136,6 +136,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
 # from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
@@ -152,7 +153,8 @@ REST_FRAMEWORK = {
         # Any other parsers
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-            'rest_framework.permissions.IsAuthenticated',
+            # 'rest_framework.permissions.IsAuthenticated',
+            'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
