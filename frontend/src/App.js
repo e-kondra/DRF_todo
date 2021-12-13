@@ -16,6 +16,8 @@ import LoginForm from "./components/LoginForm";
 
 
 class App extends React.Component {
+
+
     constructor(props) {
         super(props)
         this.state = {
@@ -26,36 +28,38 @@ class App extends React.Component {
             'username': '',
         }
     }
-    setToken(token){
+
+    setToken(token) {
         const cookies = new Cookies()
         cookies.set('token', token)
         this.setState({'token': token}, () => this.loadData())
         console.log(this.state)
     }
 
-    isAuth(){
+    isAuth() {
         return !!this.state.token
     }
 
-    getTokenFromStorage(){
+    getTokenFromStorage() {
         const cookies = new Cookies()
         const token = cookies.get('token')
         this.setState({'token': token}, () => this.loadData())
     }
 
-    logout(){
+    logout() {
         this.setToken('')
         this.setUsername('')
     }
 
 
-    setUsername(username){
+    setUsername(username) {
         const cookies = new Cookies()
         cookies.set('username', username)
         this.setState({'username': username})
         console.log(this.state)
     }
-    getUsername(){
+
+    getUsername() {
         return this.state.username
     }
 
@@ -72,20 +76,20 @@ class App extends React.Component {
 
     }
 
-    getHeaders(){
-        let headers ={
-            'Content-Type': 'application/json'
+    getHeaders() {
+        let headers = {
+            'Content-Type': 'application/json',
         }
-        if (this.isAuth()){
+        if (this.isAuth()) {
             headers['Authorization'] = 'Token ' + this.state.token
         }
         return headers
     }
 
-    loadData(){
+    loadData() {
         const headers = this.getHeaders()
         console.log(headers)
-        axios.get('http://127.0.0.1:8000/api/users',{headers}).then(
+        axios.get('http://127.0.0.1:8000/api/users', {headers}).then(
             response => {
                 const users = response.data.results // тут лежит список данных
                 this.setState(
@@ -99,7 +103,7 @@ class App extends React.Component {
             this.setState({users: []})
         }) // перенаправляем ошибку в консоль
 
-        axios.get('http://127.0.0.1:8000/api/projects',{headers}).then(
+        axios.get('http://127.0.0.1:8000/api/projects', {headers}).then(
             response => {
                 const projects = response.data.results // тут лежит список данных
                 this.setState(
@@ -113,7 +117,7 @@ class App extends React.Component {
             this.setState({projects: []})
         }) // перенаправляем ошибку в консоль
 
-        axios.get('http://127.0.0.1:8000/api/todo',{headers}).then(
+        axios.get('http://127.0.0.1:8000/api/todo', {headers}).then(
             response => {
                 const todos = response.data.results // тут лежит список данных
                 this.setState(
@@ -131,20 +135,17 @@ class App extends React.Component {
     componentDidMount() { // componentDidMount отрабатывает при монтировании компонентов
         this.getTokenFromStorage() //получили токен
 
-        //this.loadData() // отправляем запросы
-        // this.loginLogout()
     }
 
 
     render() {
-        console.log(this.state.username)
+
         return (
             <div>
                 <HashRouter>
-                    {/* вот тут в меню передаю username, а в Menu.js он не приходит */}
-                    <Menu component={() => <Menu username={this.state.username}/>}/>
-                    {this.isAuth() ? <button onClick={() => this.logout()}> Logout </button> : <Link to='/login'>Login</Link>}
-                    {this.state.username}
+                    <Menu username={this.state.username}/>
+                    {this.isAuth() ? <button onClick={() => this.logout()}> Logout </button> :
+                        <Link to='/login'>Login</Link>}
                     <Switch>
                         <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
                         <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>

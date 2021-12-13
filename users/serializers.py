@@ -12,3 +12,11 @@ class UserModelSerializer(ModelSerializer):
 
     validate_password = make_password
 
+
+class UserModelSerializerFull(ModelSerializer):
+
+    class Meta:
+        model = User  # witch model serialize
+        fields = ('username', 'first_name', 'last_name', 'email', 'is_staff', 'is_superuser')
+
+    validate_password = make_password
