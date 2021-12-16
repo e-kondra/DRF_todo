@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework.authtoken',
     'drf_yasg',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -170,9 +171,11 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100,
 }
 
-# JSON_CAMEL_CASE = {
-#     'RENDERER_CLASS': 'rest_framework.renderers.UnicodeJSONRenderer'
-# }
+GRAPHENE = {
+    'SCHEMA': 'todo.schema.schema'
+}
+
+
 
 # if DEBUG:
 #     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'].append('rest_framework.renderers.BrowsableAPIRenderer')
