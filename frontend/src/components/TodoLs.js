@@ -1,7 +1,8 @@
 import React from "react";
 
 
-const TodoItem = ({todo}) => {
+const TodoItem = ({todo, deleteTodo}) => {
+    console.log(deleteTodo)
     return (
         <tr>
             <td>{todo.project}</td>
@@ -9,13 +10,16 @@ const TodoItem = ({todo}) => {
             <td>{todo.dateCreate}</td>
             <td>{todo.dateUpdate}</td>
             <td>{todo.creator}</td>
-            <td>{todo.isActive}</td>
+            {todo.isActive ? <td>Yes</td> : <td>No</td> }
+            <td>
+                <button onClick={()=>deleteTodo(todo.id)} type='button'> Delete </button>
+            </td>
         </tr>
     )
 }
 
-const TodoList = ({todos}) => {
-    console.log(todos)
+const TodoList = ({todos, deleteTodo}) => {
+    console.log(deleteTodo)
     return (
 
         <table className="my_table">
@@ -25,7 +29,9 @@ const TodoList = ({todos}) => {
             <th>date_update</th>
             <th>creator</th>
             <th>is_active</th>
-            {todos.map((todo) => < TodoItem todo={todo}/>)}
+            <th>
+            </th>
+            {todos.map((todo) => < TodoItem todo={todo} deleteTodo={deleteTodo}/>)}
         </table>
     )
 }

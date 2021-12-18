@@ -29,6 +29,33 @@ class App extends React.Component {
         }
     }
 
+    deleteProject(id) {
+        const headers = this.getHeaders()
+        console.log(headers)
+        axios.delete(`http://127.0.0.1:8000/api/projects/${id}`, {headers}).then(
+            response => {
+                this.loadData()
+            }
+        ).catch(error => {
+            console.log(error)
+            this.setState({projects: []})
+        }) // перенаправляем ошибку в консоль
+    }
+
+    deleteTodo(id) {
+        console.log(id)
+        const headers = this.getHeaders()
+        console.log(id)
+        axios.delete(`http://127.0.0.1:8000/api/todo/${id}`, {headers}).then(
+            response => {
+                this.loadData()
+            }
+        ).catch(error => {
+            console.log(error)
+            this.setState({todos: []})
+        }) // перенаправляем ошибку в консоль
+    }
+
     setToken(token) {
         const cookies = new Cookies()
         cookies.set('token', token)
@@ -148,8 +175,10 @@ class App extends React.Component {
                         <Link to='/login'>Login</Link>}
                     <Switch>
                         <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
-                        <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>
-                        <Route exact path='/todo' component={() => <TodoList todos={this.state.todos}/>}/>
+                        <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}
+                                                                                    deleteProject={(id) => this.deleteProject(id)}/>}/>
+                        <Route exact path='/todo' component={() => <TodoList todos={this.state.todos}
+                                                                             deleteTodo={(id) => this.deleteTodo(id)}/>}/>
                         <Route exact path='/login' component={() => <LoginForm
                             getToken={(username, password) => this.getToken(username, password)}/>}/>
                         <Route path='/project/:id'>
