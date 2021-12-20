@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {Button} from "react-bootstrap";
 
 const ProjectItem = ({project, deleteProject}) => {
 
@@ -11,7 +12,7 @@ const ProjectItem = ({project, deleteProject}) => {
             <td>{project.urlRep}</td>
             <td>{project.users}</td>
             <td>
-                <button onClick={()=> deleteProject(project.id)} type="button"> Delete </button>
+                <Button onClick={() => deleteProject(project.id)}  variant="secondary"> Delete</Button>
             </td>
         </tr>
     )
@@ -19,15 +20,17 @@ const ProjectItem = ({project, deleteProject}) => {
 
 const ProjectList = ({projects, deleteProject}) => {
     return (
-
-        <table className="my_table">
-            <th>NAME</th>
-            <th>URL</th>
-            <th>USERS</th>
-            <th>
-            </th>
-            {projects.map((project) => < ProjectItem project={project} deleteProject={deleteProject}/>)}
-        </table>
+        <div>
+            <table className="my_table">
+                <th>NAME</th>
+                <th>URL</th>
+                <th>USERS</th>
+                <th>
+                </th>
+                {projects.map((project) => < ProjectItem project={project} deleteProject={deleteProject}/>)}
+            </table>
+            <Link to='projects/create'> Create </Link>
+        </div>
     )
 }
 
