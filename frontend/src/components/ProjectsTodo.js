@@ -1,5 +1,5 @@
 import React from "react";
-import {Navbar, Nav, Table} from "react-bootstrap";
+import {Form, Navbar, Nav, Table, Alert} from "react-bootstrap";
 import {HashRouter, Link, useParams} from "react-router-dom";
 import * as path from "path";
 
@@ -12,7 +12,7 @@ const TodoItem = ({todo}) => {
             <td>{todo.dateCreate}</td>
             <td>{todo.dateUpdate}</td>
             <td>{todo.creator}</td>
-            <td>{todo.isActive}</td>
+            {todo.isActive ? <td>Yes</td> : <td>No</td>}
         </tr>
     )
 }
@@ -30,26 +30,33 @@ const UserItem = ({user, proj}) => {
 
 const ProjectsTodoList = ({todos, projects, users}) => {
     let {id} = useParams();
-    let filtered_items = todos.filter(todo => todo.project == (parseInt(id)))
-    let proj = projects.filter(project => project.id == (parseInt(id)))[0]
+    let filtered_items = todos.filter(todo => todo.project === (parseInt(id)))
+    let proj = projects.filter(project => project.id === (parseInt(id)))[0]
     console.log(proj)
 
     return (
-        <div>
-            <h3>{proj.name}</h3>
-            <div>URL: {proj.urlRep}</div>
+        <Form>
+            <div>
+                <Alert variant="success">
+                    <Alert.Heading>{proj.name}</Alert.Heading>
+                    <p>URL: {proj.urlRep}</p>
+                </Alert>
 
-            <div>Todo_List of {proj.name}: </div>
-            {/*<div> /div>*/}
-            <Table className="bordered small">
-                <th>text</th>
-                <th>date_create</th>
-                <th>date_update</th>
-                <th>creator</th>
-                <th>is_active</th>
-                {filtered_items.map((todo) => <TodoItem todo={todo}/>)}
-            </Table>
-        </div>
+                <p>Todo_List of {proj.name}:</p>
+                <Table striped bordered hover size="sm">
+                    <thead>
+                        <th>text</th>
+                        <th>date_create</th>
+                        <th>date_update</th>
+                        <th>creator</th>
+                        <th>is_active</th>
+                    </thead>
+                    <tbody>
+                        {filtered_items.map((todo) => <TodoItem todo={todo}/>)}
+                    </tbody>
+                </Table>
+            </div>
+        </Form>
     )
 }
 

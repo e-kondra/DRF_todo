@@ -46,12 +46,12 @@ class ProjectForm extends React.Component {
             <Form onSubmit={(event) => this.handleSubmit(event)}>
                 <Row className="mb3">
                     <Form.Group as={Col}>
-                        <Form.Label htmlFor="login">Name</Form.Label>
+                        <Form.Label htmlFor="name">Name</Form.Label>
                         <Form.Control type="text" name="name" value={this.state.name}
                                       onChange={(event) => this.handleChange(event)}/>
                     </Form.Group>
                     <Form.Group as={Col}>
-                        <Form.Label htmlFor="login">URL</Form.Label>
+                        <Form.Label htmlFor="url">URL</Form.Label>
                         <Form.Control type="text" name="url" value={this.state.url}
                                       onChange={(event) => this.handleChange(event)}/>
                     </Form.Group>
