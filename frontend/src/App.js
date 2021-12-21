@@ -44,6 +44,19 @@ class App extends React.Component {
         }) // перенаправляем ошибку в консоль
     }
 
+    // updateProject(id, name, url, users) {
+    //     const headers = this.getHeaders()
+    //     const data = {name: name, urlRep: url, users: users}
+    //     axios.put(`http://127.0.0.1:8000/api/projects/${id}`, data, {headers}).then(
+    //         response => {
+    //             this.loadData()
+    //         }
+    //     ).catch(error => {
+    //         console.log(error)
+    //         this.setState({projects: []})
+    //     }) // перенаправляем ошибку в консоль
+    // }
+    //
 
     createTodo(project, text, creator, isActive) {
         const headers = this.getHeaders()
@@ -58,20 +71,6 @@ class App extends React.Component {
             this.setState({todos: []})
         }) // перенаправляем ошибку в консоль
     }
-
-    // updateTodo(id, project, text, creator, isActive) {
-    //     const headers = this.getHeaders()
-    //     const data = {project: project, text: text, creator: creator, is_active: isActive}
-    //     console.log(data)
-    //     axios.put(`http://127.0.0.1:8000/api/todo/${id}`, data, {headers}).then(
-    //         response => {
-    //             this.loadData()
-    //         }
-    //     ).catch(error => {
-    //         console.log(error)
-    //         this.setState({todos: []})
-    //     }) // перенаправляем ошибку в консоль
-    // }
 
 
     deleteProject(id) {
@@ -219,6 +218,7 @@ class App extends React.Component {
                         <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
                         <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}
                                                                                     deleteProject={(id) => this.deleteProject(id)}/>}/>
+
                         <Route exact path='/projects/create/'
                                component={() => <ProjectForm users={this.state.users}
                                                              createProject={(name, url, users) => this.createProject(name, url, users)}/>}/>

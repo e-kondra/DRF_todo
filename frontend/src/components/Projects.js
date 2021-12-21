@@ -12,7 +12,7 @@ const ProjectItem = ({project, deleteProject}) => {
             <td>{project.urlRep}</td>
             <td>{project.users}</td>
             <td>
-                <Button onClick={() => deleteProject(project.id)}  variant="secondary"> Delete</Button>
+                <Button onClick={() => deleteProject(project.id)} variant="secondary"> Delete</Button>
             </td>
         </tr>
     )
@@ -27,7 +27,9 @@ const ProjectList = ({projects, deleteProject}) => {
                 <th>USERS</th>
                 <th>
                 </th>
+
                 {projects.map((project) => < ProjectItem project={project} deleteProject={deleteProject}/>)}
+
             </table>
             <Link to='projects/create'> Create </Link>
         </div>
